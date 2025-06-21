@@ -1,54 +1,37 @@
 import { create } from "zustand";
 
-type Status = "pendiente" | "haciendo" | "terminado";
+export type Status = "pendiente" | "progreso" | "hecho";
 
-interface KanbanCard {
+export interface Task {
   id: string;
   title: string;
-  content?: string;
+  status: Status;
 }
 
 interface KanbanState {
-  columns: Record<Status, KanbanCard[]>;
-  addCard: (status: Status, card: KanbanCard) => void;
-  moveCard: (from: Status, to: Status, cardId: string) => void;
-  removeCard: (status: Status, cardId: string) => void;
+  tasks: Task[];
+  addTask: (title: string, status: Status) => void;
+  moveTask: (id: string, status: Status) => void;
+  removeTask: (id: string) => void;
 }
 
 export const useKanbanStore = create<KanbanState>((set) => ({
-  columns: {
-    pendiente: [],
-    haciendo: [],
-    terminado: [],
-  },
-
-  addCard: (status, card) =>
+  tasks: [],
+  addTask: (title, status) =>
     set((state) => ({
-      columns: {
-        ...state.columns,
-        [status]: [...state.columns[status], card],
-      },
+      tasks: [
+        ...state.tasks,
+        { id: Date.now().toString(), title, status },
+      ],
     })),
-
-  moveCard: (from, to, cardId) =>
-    set((state) => {
-      const card = state.columns[from].find((c) => c.id === cardId);
-      if (!card) return state;
-
-      return {
-        columns: {
-          ...state.columns,
-          [from]: state.columns[from].filter((c) => c.id !== cardId),
-          [to]: [...state.columns[to], card],
-        },
-      };
-    }),
-
-  removeCard: (status, cardId) =>
+  moveTask: (id, status) =>
     set((state) => ({
-      columns: {
-        ...state.columns,
-        [status]: state.columns[status].filter((c) => c.id !== cardId),
-      },
+      tasks: state.tasks.map((t) =>
+        t.id === id ? { ...t, status } : t
+      ),
+    })),
+  removeTask: (id) =>
+    set((state) => ({
+      tasks: state.tasks.filter((t) => t.id !== id),
     })),
 }));
