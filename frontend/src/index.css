@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "./styles/omnisent-styles.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-omni-border;
+  }
+
+  body {
+    @apply bg-omni-bg text-omni-text font-sans antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-omni-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-omni-border rounded-full hover:bg-omni-cyan/20;
+  }
+
+  ::selection {
+    @apply bg-omni-cyan/30 text-omni-cyan;
+  }
+}
+
+@layer components {
+  .omni-btn {
+    @apply px-4 py-2 rounded border border-omni-border bg-omni-surface 
+           text-omni-text font-medium transition-all duration-200
+           hover:border-omni-cyan hover:text-omni-cyan hover:shadow-lg hover:shadow-omni-cyan/20
+           active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .omni-btn-primary {
+    @apply omni-btn bg-omni-cyan/10 border-omni-cyan text-omni-cyan
+           hover:bg-omni-cyan/20;
+  }
+
+  .omni-input {
+    @apply w-full px-3 py-2 rounded border border-omni-border bg-omni-surface
+           text-omni-text placeholder-omni-textDim
+           focus:outline-none focus:border-omni-cyan focus:ring-1 focus:ring-omni-cyan/50
+           transition-all duration-200;
+  }
+
+  .omni-card {
+    @apply bg-omni-surface border border-omni-border rounded-lg p-4
+           hover:border-omni-cyan/50 transition-all duration-300;
+  }
+
+  .omni-tab {
+    @apply px-4 py-2 border-b-2 border-transparent text-omni-textDim
+           hover:text-omni-text hover:border-omni-cyan/50
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .omni-tab-active {
+    @apply text-omni-cyan border-omni-cyan;
+  }
+
+  .omni-glow {
+    @apply shadow-lg shadow-omni-cyan/20;
+  }
+
+  .omni-grid-bg {
+    @apply bg-grid-pattern bg-grid;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-omni-cyan to-omni-green bg-clip-text text-transparent;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 217, 255, 0.5),
+                 0 0 20px rgba(0, 217, 255, 0.3),
+                 0 0 30px rgba(0, 217, 255, 0.2);
+  }
+
+  .loading-dots {
+    @apply inline-flex items-center gap-1;
+  }
+
+  .loading-dots::after {
+    content: '...';
+    @apply animate-pulse;
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scan-line {
+  @apply absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-omni-cyan to-transparent;
+  animation: scan 3s linear infinite;
+}
+
+.terminal-cursor {
+  @apply inline-block w-2 h-4 bg-omni-cyan animate-pulse;
+}
