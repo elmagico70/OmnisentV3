@@ -1,5 +1,6 @@
 // services/api.ts - Updated with file management endpoints
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+// @claude-refactor: mover a hook aparte
 import { getToken, removeToken, isTokenExpired } from '../utils/token';
 
 // Configuración base de la API
@@ -373,6 +374,7 @@ export const apiClient = {
 };
 
 // Utility functions for file operations
+// @claude-refactor: simplificar lógica backend
 export const fileUtils = {
   // Format file size
   formatSize: (bytes: number): string => {

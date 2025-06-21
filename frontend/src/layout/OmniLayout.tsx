@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Outlet, useLocation } from "react-router-dom";
-import { useAppStore } from "@/store/appStore";
-import { Sidebar } from "@/components/Sidebar";
-import { TabContainer } from "@/components/TabContainer";
-import { Header } from "@/components/Header";
+import { useAppStore } from "@/store/appSlice";
+import { Sidebar } from "@/layout/Sidebar";
+import { TabContainer } from "@/layout/TabContainer";
+import { Header } from "@/shared/Header";
 import { 
   Wifi, 
   WifiOff, 

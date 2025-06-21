@@ -1,5 +1,5 @@
 // utils/fileHelpers.ts
-import { FileItem } from '@/stores/filesStore';
+import { FileItem } from '@/store/filesSlice';
 
 export const fileHelpers = {
   // Generate unique file ID
