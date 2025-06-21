@@ -1,7 +1,7 @@
 // hooks/useFilePermissions.ts
 import { useMemo } from 'react';
-import { useAuth } from '@/modules/auth/AuthContext';
-import { FileItem } from '@/stores/filesStore';
+import { useAuth } from '@/features/auth/AuthContext';
+import { FileItem } from '@/store/filesSlice';
 
 export interface FilePermissions {
   canView: boolean;
