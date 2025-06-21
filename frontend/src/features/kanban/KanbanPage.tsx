@@ -1,6 +1,6 @@
 // modules/tasks/KanbanPage.tsx
 import React, { useState } from "react"
-import { useKanbanStore, Status } from "@/store/useKanbanStore"
+import { useKanbanStore, Status } from "@/store/kanbanSlice"
 
 const STATUSES: Status[] = ["pendiente", "progreso", "hecho"]
 const statusLabels: Record<Status, string> = {
