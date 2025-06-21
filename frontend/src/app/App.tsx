@@ -59,8 +59,9 @@ const AdminWrapper = () => (
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ThemeProvider defaultTheme="dark" storageKey="omnisent-theme">
+      <RefineKbarProvider>
+        <AuthProvider>
+          <ThemeProvider defaultTheme="dark" storageKey="omnisent-theme">
           <BrowserRouter>
             <Suspense fallback={<LoadingFallback />}>
                     <Routes>
@@ -150,6 +151,7 @@ const App = () => {
             <RefineKbar />
           </ThemeProvider>
         </AuthProvider>
+      </RefineKbarProvider>
     </QueryClientProvider>
   );
 };
